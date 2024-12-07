@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sales Data</title>
+    <style>
+        table {
+            width: 30%;
+            border-collapse: separate;
+            margin: 20px auto;
+            border: 2px double black;
+            border-spacing: 3px;
+            font-family: Arial;
+        }
+
+        th,
+        td {
+            border: 2px double black;
+            padding: 8px;
+            text-align: left;
+            text-align: center;
+        }
+
+        th {
+            font-weight: 800;
+        }
+    </style>
+</head>
+
+<body>
+
+    <table id="salesTable">
+        <thead>
+            <tr>
+                <th>Region</th>
+                <th>Model</th>
+                <th>Sales</th>
+            </tr>
+        </thead>
+        <tbody id="salesTableBody">
+        </tbody>
+    </table>
+
+    <script>
+        const data = [
+            { region: 'US', model: 'A', sales: 150 },
+            { region: 'US', model: 'B', sales: 120 },
+            { region: 'US', model: 'C', sales: 350 },
+            { region: 'EU', model: 'A', sales: 200 },
+            { region: 'EU', model: 'B', sales: 100 },
+            { region: 'EU', model: 'C', sales: 250 },
+            { region: 'CA', model: 'A', sales: 200 },
+            { region: 'CA', model: 'B', sales: 100 },
+            { region: 'CA', model: 'C', sales: 230 },
+            { region: 'CA', model: 'D', sales: 400 },
+        ];
+
+        const tableBody = document.getElementById('salesTableBody');
+
+        function displayTableData(data) {
+            const sum = {};
+
+            data.forEach(item => {
+                sum[item.region] = (sum[item.region] || 0) + item.sales;
+            });
+
+            const sortedData = [];
+            const regions = [...new Set(data.map(item => item.region))];
+
+            regions.forEach(region => {
+                const regionData = data.filter(item => item.region === region);
+                sortedData.push({ region, model: 'Sum', sales: sum[region] });
+                sortedData.push(...regionData);
+            });
+
+            tableBody.innerHTML = sortedData.map(item =>
+                `<tr>
+                    <td>${item.region}</td>
+                    <td>${item.model}</td>
+                    <td>${item.sales}</td>
+                </tr>`
+            ).join('');
+        }
+
+        displayTableData(data);
+    </script>
+</body>
+
+</html>
