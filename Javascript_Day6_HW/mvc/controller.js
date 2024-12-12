@@ -47,14 +47,14 @@ export const Controller = ((model, view) => {
         });
     };
 
-    const toggleCheck = () => {
+    const checkMark = () => {
         todoContainer.addEventListener('click', (e) => {
-            const liElement = e.target.closest('li');
+            const liItem = e.target.closest('li');
 
-            if (liElement) {
-                const itemId = parseInt(liElement.dataset.id, 10);
+            if (liItem) {
+                const itemId = +liItem.dataset.id;
 
-                liElement.classList.toggle('checked');
+                liItem.classList.toggle('checked');
 
                 state.todolist = state.todolist.map((todo) =>
                     todo.id === itemId ? { ...todo, completed: !todo.completed } : todo
@@ -67,7 +67,7 @@ export const Controller = ((model, view) => {
         init();
         deleteTodo();
         addTodo();
-        toggleCheck();
+        checkMark();
     };
 
     return { bootstrap };

@@ -83,6 +83,7 @@ ul li {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-left: 30px;
 }
 
 ul li span {
@@ -121,6 +122,7 @@ ul li.checked {
     background: #888;
     color: #fff;
     position: relative;
+    padding-left: 30px;
 }
 
 ul li.checked span {
@@ -133,8 +135,8 @@ ul li.checked::before {
     border-color: #fff;
     border-style: solid;
     border-width: 0 2px 2px 0;
-    top: 10px;
-    left: 16px;
+    top: 5px;
+    left: 10px;
     transform: rotate(45deg);
     height: 15px;
     width: 7px;
